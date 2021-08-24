@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-login-page',
@@ -8,7 +9,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class LoginPageComponent implements OnInit {
 
-  constructor(private fb: FormBuilder) { }
+  constructor (
+    private fb: FormBuilder,
+    private authSvc:AuthService
+  ) { }
 
   ngOnInit(): void {
   }
@@ -19,7 +23,18 @@ export class LoginPageComponent implements OnInit {
   })
 
   onSaveForm(loginForm: FormGroup) {
-    console.log(loginForm)
+    let user = {
+      username: loginForm.value.username,
+      email: loginForm.value.email
+    }
+    this.authSvc.login(user).subscribe(res => {
+      if (res === true) {
+        console.log('yay')
+      }
+      else {
+        console.log('no')
+      }
+    });
     this.loginForm.reset()
   }
 }

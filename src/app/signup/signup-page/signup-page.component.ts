@@ -1,6 +1,5 @@
-import { i18nMetaToJSDoc } from '@angular/compiler/src/render3/view/i18n/meta';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-signup-page',
@@ -24,13 +23,9 @@ export class SignupPageComponent implements OnInit {
     companyCatchPhrase: ['', Validators.required]
   });
 
-  onResetForm() {
-    this.signupForm.reset()
-  }
-
   onSaveForm(signupForm: FormGroup) {
     console.log(signupForm)
-    this.onResetForm()
+    this.signupForm.reset()
   }
 
 

@@ -5,18 +5,20 @@
                 <mat-card-title class="py-4 md:py-20 text-3xl">Login</mat-card-title>
             </div>
             <mat-card-content>
-                <form>
+                <form [formGroup]="loginForm" (ngSubmit)="onSaveForm(loginForm)">
                     <div class="input-wrapper focus-within:border-primary mb-4">
                         <input type="text"
                         class="input"
                         placeholder="Username"
-                        name="username">
+                        name="username"
+                        formControlName="username">
                     </div>
                     <div class="input-wrapper focus-within:border-primary mb-7">
                         <input type="text"
                         class="input"
                         placeholder="Email"
-                        name="email">
+                        name="email"
+                        formControlName="email">
                     </div>
                     <button mat-raised-button color="primary" class="w-36">Login</button>
                 </form>
