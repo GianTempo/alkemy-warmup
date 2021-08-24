@@ -21,6 +21,8 @@
     "@angular/platform-browser": "~11.2.13",
     "@angular/platform-browser-dynamic": "~11.2.13",
     "@angular/router": "~11.2.13",
+    "@dicebear/avatars": "^4.7.2",
+    "@dicebear/micah": "^4.7.2",
     "@ngneat/tailwind": "^7.0.3",
     "axios": "^0.21.1",
     "rxjs": "~6.6.0",

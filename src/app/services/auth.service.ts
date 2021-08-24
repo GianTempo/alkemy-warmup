@@ -49,8 +49,10 @@ export class AuthService {
     this.router.navigate(['/login'])
   }
 
-  signup(user: User) {
-    
+  signup(user:any) {
+    this.loggedUser = user;
+    this.setLoggedUser(user)
+    this.router.navigate([''])
   }
 
   setLoggedUser(user: User) {
