@@ -21,6 +21,7 @@
                         formControlName="email">
                     </div>
                     <button mat-raised-button color="primary" class="w-36">Login</button>
+                    <div *ngIf="unsuccesfullLogin === true" class="mt-3"><span class="text-red-500">Username or mail was invalid. Try again.</span></div>
                 </form>
             </mat-card-content>
             <mat-card-footer>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -11,11 +12,13 @@ export class LoginPageComponent implements OnInit {
 
   constructor (
     private fb: FormBuilder,
-    private authSvc:AuthService
+    private authSvc: AuthService,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
   }
+  unsuccesfullLogin: boolean = false;
 
   loginForm = this.fb.group({
     username: ['', Validators.required],
@@ -29,10 +32,11 @@ export class LoginPageComponent implements OnInit {
     }
     this.authSvc.login(user).subscribe(res => {
       if (res === true) {
-        console.log('yay')
+        this.unsuccesfullLogin = false;
+        this.router.navigate(['/'])
       }
       else {
-        console.log('no')
+        this.unsuccesfullLogin = true;
       }
     });
     this.loginForm.reset()

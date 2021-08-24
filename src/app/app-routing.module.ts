@@ -7,11 +7,6 @@ import { SignupPageComponent } from './signup/signup-page/signup-page.component'
 
 const routes: Routes = [
   {
-    path: '',
-    pathMatch: 'full',
-    redirectTo:'home'
-  },
-  {
     path: "login",
     component: LoginPageComponent,
   },
@@ -20,7 +15,7 @@ const routes: Routes = [
     component: SignupPageComponent,
   },
   {
-    path: 'home',
+    path: '',
     component: HomepageComponent,
     canActivate: [AuthGuard],
   }
