@@ -12,7 +12,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 }
 
 .input {
-    @apply block w-full pl-5 py-3
+    @apply block w-full py-3 text-center
     bg-transparent
     appearance-none
     placeholder-gray-400

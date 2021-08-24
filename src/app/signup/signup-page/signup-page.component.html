@@ -1,0 +1,57 @@
+<div class="h-full px-24 md:px-52 lg:px-80 flex flex-wrap justify-center content-center bg-gray-100">
+    <div class="flex-grow sm:h-1/4 md:h-2/3">
+        <mat-card class="text-center min-h-full">
+            <div>
+                <mat-card-title class="py-2 md:py-14 text-3xl">Signup</mat-card-title>
+                <mat-card-subtitle>All the fields are required</mat-card-subtitle>
+            </div>
+            <mat-card-content>
+                <form [formGroup]="signupForm" (ngSubmit)="onSaveForm(signupForm.value)">
+                    <div class="input-wrapper focus-within:border-primary mb-4">
+                        <input type="text"
+                        class="input"
+                        placeholder="Name"
+                        formControlName="name">
+                    </div>
+                    <div class="input-wrapper focus-within:border-primary mb-4">
+                        <input type="text"
+                        class="input"
+                        placeholder="Username"
+                        formControlName="username">
+                    </div>
+                    <div class="input-wrapper focus-within:border-primary mb-4">
+                        <input type="text"
+                        class="input"
+                        placeholder="Mail"
+                        formControlName="mail">
+                    </div>
+                    <div class="input-wrapper focus-within:border-primary mb-4">
+                        <input type="text"
+                        class="input"
+                        placeholder="Website"
+                        formControlName="website">
+                    </div>
+                    <div class="input-wrapper focus-within:border-primary mb-4">
+                        <input type="text"
+                        class="input"
+                        placeholder="Company name"
+                        formControlName="companyName">
+                    </div>
+                    <div class="input-wrapper focus-within:border-primary mb-7">
+                        <input type="text"
+                        class="input"
+                        placeholder="Catchphrase"
+                        formControlName="companyCatchPhrase">
+                    </div>
+                    <button mat-raised-button color="primary"
+                    class="w-36"
+                    type="submit"
+                    [disabled]="signupForm.invalid">Signup</button>
+                    <mat-card-footer>
+                        <p><a href="#" class="text-center text-blue-500 hover:underline">Already an user? Login!</a></p>
+                    </mat-card-footer>
+                </form>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>
