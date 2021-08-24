@@ -24,17 +24,6 @@ export class SignupPageComponent implements OnInit {
     companyCatchPhrase: ['', Validators.required]
   });
 
-  createForm() {
-    return new FormGroup({
-      name: new FormControl(''),
-      username: new FormControl(''),
-      mail: new FormControl(''),
-      website: new FormControl(''),
-      companyName: new FormControl(''),
-      companyCatchPhrase: new FormControl('')
-    })
-  }
-
   onResetForm() {
     this.signupForm.reset()
   }
