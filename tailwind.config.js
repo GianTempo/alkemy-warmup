@@ -13,6 +13,9 @@ module.exports = {
       extend: {
         zIndex: {
           "-1":"-1"
+        },
+        colors: {
+          'primary': '#3f51b5'
         }
       },
     },

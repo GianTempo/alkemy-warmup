@@ -1,0 +1,12 @@
+.input-wrapper {
+    @apply w-4/5 lg:w-8/12 xl:w-5/12 mx-auto border-b-2
+    bg-gray-100
+}
+
+.input {
+    @apply block w-full pl-5 py-3
+    bg-transparent
+    appearance-none
+    placeholder-gray-400
+    focus:outline-none
+}

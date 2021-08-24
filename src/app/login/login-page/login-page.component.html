@@ -1,36 +1,24 @@
-<div class="h-full flex flex-wrap justify-center content-center bg-gray-100">
-    <div>
-        <mat-card class="w-80 text-center">
+<div class="h-full px-24 md:px-52 lg:px-80 flex flex-wrap justify-center content-center bg-gray-100">
+    <div class="flex-grow sm:h-1/4 md:h-2/3">
+        <mat-card class="text-center min-h-full">
             <div>
-                <mat-card-title class="py-5">Login</mat-card-title>
+                <mat-card-title class="pt-4 md:pt-20 text-3xl">Login</mat-card-title>
             </div>
-            <mat-card-content>
+            <mat-card-content class="pt-12">
                 <form>
-                    <div class="relative my-4 border-b-2
-                    bg-gray-100
-                    focus-within:border-gray-400">
+                    <div class="input-wrapper focus-within:border-primary mb-4">
                         <input type="text"
-                        class="block w-full pl-5 py-3
-                        bg-transparent
-                        appearance-none
-                        placeholder-gray-400
-                        focus:outline-none"
+                        class="input"
                         placeholder="Username"
                         name="username">
                     </div>
-                    <div class="relative my-4 border-b-2
-                        bg-gray-100
-                        focus-within:border-gray-400">
+                    <div class="input-wrapper focus-within:border-primary mb-7">
                         <input type="password"
-                        class="block w-full pl-5 py-3
-                        bg-transparent
-                        appearance-none
-                        placeholder-gray-400
-                        focus:outline-none"
+                        class="input"
                         placeholder="Password"
                         name="password">
                     </div>
-                    <button mat-raised-button color="primary" class="mb-3">Login</button>
+                    <button mat-raised-button color="primary" class="w-36">Login</button>
                 </form>
             </mat-card-content>
             <mat-card-footer>
