@@ -36,7 +36,24 @@ export class ProfileCardComponent implements OnInit {
     },
     avatar:''
   }
+
+
   ngOnInit(): void {
+  }
+
+  goToPosts(): void {
+    console.log('Navigating to posts')
+    //TODO: implement event emitter once posts page is made.
+  }
+
+  goToAlbums(): void {
+    console.log('Navigating to albums')
+    //TODO: implement event emitter once albums page is made.
+  }
+
+  goToTODOs(): void {
+    console.log('Navigating to TODOs')
+    //TODO: implement event emitter once TODOs page is made.
   }
 
 }
