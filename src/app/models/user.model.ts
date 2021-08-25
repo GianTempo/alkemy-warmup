@@ -17,7 +17,7 @@ export interface User {
     website: string,
     company: {
         name: string,
-        catchphrase: string,
+        catchPhrase: string,
         bs: string,
     }
 }

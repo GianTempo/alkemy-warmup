@@ -29,7 +29,7 @@ export class ProfilePageComponent implements OnInit {
     website: '',
     company: {
       name: '',
-      catchphrase: '',
+      catchPhrase: '',
       bs: ''
     }
   }

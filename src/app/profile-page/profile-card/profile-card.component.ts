@@ -31,7 +31,7 @@ export class ProfileCardComponent implements OnInit {
     website: '',
     company: {
       name: '',
-      catchphrase: '',
+      catchPhrase: '',
       bs: ''
     }
   }
@@ -42,7 +42,7 @@ export class ProfileCardComponent implements OnInit {
   ngOnInit(): void {
     let avatar = this.userSvc.generateAvatar()
     this.avatar = this.sanitizer.bypassSecurityTrustHtml(avatar)
-    console.log(this.avatar)
+    console.log(this.user)
   }
 
 }
