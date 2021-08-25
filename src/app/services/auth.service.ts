@@ -3,33 +3,25 @@ import { Router } from '@angular/router';
 import Axios from 'axios'
 import { Observable } from 'rxjs';
 import { User } from '../models/user.model';
+import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  URL_API = 'https://jsonplaceholder.typicode.com/users'
-
-  constructor (private router: Router) { }
-
-  loggedUser:any
+  constructor (
+    private router: Router,
+    private usrSvc: UserService,
+  ) { }
 
   login(user: { username: string, email: string }):Observable<boolean> {
-    let users: any[] = []
+    let users: User[] = []
+    this.usrSvc.getUsers().subscribe(res => users = res)
     let success = new Observable<boolean>(observer => {
-      Axios({
-        method: 'get',
-        url: this.URL_API,
-      })
-        .then(res => {
-          users = res.data
           users.forEach((u) => {
             if (u.username === user.username && u.email === user.email) {
-              this.loggedUser = u
-              this.setLoggedUser(u)
-            }
-            if (this.loggedUser !== undefined) {
+              this.usrSvc.setLoggedUser(u)
               observer.next(true)
               observer.complete()
             }
@@ -39,29 +31,17 @@ export class AuthService {
             }
           })
           })
-        })
     return success
   }
 
   logout(): void {
     localStorage.removeItem('user')
-    this.loggedUser = undefined
     this.router.navigate(['/login'])
   }
 
-  signup(user:any):void {
-    this.loggedUser = user;
-    this.setLoggedUser(user)
+  signup(user: any): void {
+    this.usrSvc.setLoggedUser(user)
     this.router.navigate([''])
   }
 
-  setLoggedUser(user: User):void {
-    localStorage.setItem('user', JSON.stringify(user));
-  }
-
-  getUser(): User {
-    const loggedUser = localStorage.user;
-    const user = JSON.parse(loggedUser)
-    return user;
-  }
 }

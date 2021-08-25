@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../models/user.model';
 import { AuthService } from '../services/auth.service';
+import { UserService } from '../services/user.service';
 import { ProfilePageModule } from './profile-page.module'
 
 @Component({
@@ -31,13 +32,17 @@ export class ProfilePageComponent implements OnInit {
       name: '',
       catchPhrase: '',
       bs: ''
-    }
+    },
+    avatar:''
   }
 
-  constructor(private authSvc:AuthService) { }
+  constructor (
+    private authSvc: AuthService,
+    private userSvc: UserService,
+  ) { }
 
   ngOnInit(): void {
-    this.user = this.authSvc.getUser()
+    this.user = this.userSvc.getUser()
   }
 
 }

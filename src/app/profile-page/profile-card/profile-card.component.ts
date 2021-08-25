@@ -33,16 +33,10 @@ export class ProfileCardComponent implements OnInit {
       name: '',
       catchPhrase: '',
       bs: ''
-    }
+    },
+    avatar:''
   }
-  avatar:ɵSafeResourceUrl = ''
-  constructor (private userSvc: UserService,
-  private sanitizer:DomSanitizer) { }
-
   ngOnInit(): void {
-    let avatar = this.userSvc.generateAvatar()
-    this.avatar = this.sanitizer.bypassSecurityTrustHtml(avatar)
-    console.log(this.user)
   }
 
 }

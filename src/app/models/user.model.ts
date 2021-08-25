@@ -1,3 +1,5 @@
+import { SafeHtml } from "@angular/platform-browser";
+
 export interface User {
     id: number,
     name: string,
@@ -19,5 +21,6 @@ export interface User {
         name: string,
         catchPhrase: string,
         bs: string,
-    }
+    },
+    avatar:SafeHtml
 }
