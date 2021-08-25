@@ -27,8 +27,22 @@ const routes: Routes = [
       },
       {
         path: 'profile',
-        component: ProfilePageComponent
-      }
+        component: ProfilePageComponent,
+        /* children: [
+          {
+            path: ':id/posts',
+            //Implement posts page
+          },
+          {
+            path: ':id/todos',
+            //Implement todos page
+          },
+          {
+            path: ':id/albums',
+            //implement album page
+          }
+        ] */
+      },
     ]
   }
 ];
