@@ -37,8 +37,11 @@ export class ProfileCardComponent implements OnInit {
     avatar:''
   }
 
+  constructor (private sanitizer:DomSanitizer, private userSvc:UserService) { }
 
   ngOnInit(): void {
+    let avatar = this.userSvc.generateAvatar()
+    this.user.avatar = this.sanitizer.bypassSecurityTrustHtml(avatar)
   }
 
   goToPosts(): void {

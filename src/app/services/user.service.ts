@@ -40,8 +40,7 @@ export class UserService {
 
   generateAvatar() {
     let svg = createAvatar(style, { seed: Date.now().toLocaleString() })
-    let avatar = this.sanitizer.bypassSecurityTrustHtml(svg)
-    return avatar
+    return svg
   }
 
   getUsers():Observable<User[]> {
