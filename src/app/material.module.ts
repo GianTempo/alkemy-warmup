@@ -3,6 +3,9 @@ import { MatCardModule } from '@angular/material/card'
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar'
+import { MatDividerModule } from '@angular/material/divider'
+import { MatGridListModule } from '@angular/material/grid-list'
+import { MatExpansionModule } from '@angular/material/expansion'
 
 @NgModule({
     imports: [
@@ -12,7 +15,10 @@ import { MatToolbarModule } from '@angular/material/toolbar'
         MatCardModule,
         MatFormFieldModule,
         MatButtonModule,
-        MatToolbarModule
+        MatToolbarModule,
+        MatDividerModule,
+        MatGridListModule,
+        MatExpansionModule,
     ],
     declarations: [],
     providers: [],

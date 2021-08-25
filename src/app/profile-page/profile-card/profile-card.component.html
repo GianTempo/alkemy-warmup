@@ -1,0 +1,23 @@
+<div class="grid grid-flow-row grid-cols-3 gap-3 mx-10 mt-5 justify-cente">
+    <mat-card class="text-center h-60">
+        <mat-card-content>
+            <mat-card-title class="py-3">Username: {{user.username}}</mat-card-title>
+            <mat-divider></mat-divider>
+            <p class="text-center pt-3">Name:<br>{{user.name}}</p>
+        </mat-card-content>
+    </mat-card>
+    <mat-card class="text-center h-60">
+        <mat-card-title class="py-3">Website</mat-card-title>
+        <mat-divider></mat-divider>
+        <p class="pt-3">{{user.website}}</p>
+    </mat-card>
+    <mat-card class="text-center h-60">
+        <mat-card-title class="py-3">Company:</mat-card-title>
+        <mat-divider></mat-divider>
+        <p class="pt-3">Name: {{user.company.name}}</p>
+        <mat-divider></mat-divider>
+        <p class="pt-3">Catch phrase: {{user.company.catchphrase}}</p>
+        <mat-divider></mat-divider>
+        <p class="pt-3">Bs: {{user.company.bs}}</p>
+    </mat-card>
+</div>

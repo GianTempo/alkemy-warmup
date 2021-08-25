@@ -4,6 +4,8 @@ import { BrowserModule, Title } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { InlineSVGModule } from 'ng-inline-svg'
+import { HttpClientModule } from '@angular/common/http';
 
 //Other modules imports
 import { MaterialModule } from './material.module';
@@ -20,7 +22,9 @@ import { SignupModule } from './signup/signup.module'
     BrowserAnimationsModule,
     MaterialModule,
     LoginModule,
-    SignupModule
+    SignupModule,
+    InlineSVGModule.forRoot(),
+    HttpClientModule
   ],
   providers: [Title],
   bootstrap: [AppComponent]

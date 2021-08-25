@@ -4,6 +4,7 @@ import { AuthGuard } from './auth.guard';
 import { HomepageComponent } from './homepage/homepage/homepage.component';
 import { LoginPageComponent } from './login/login-page/login-page.component';
 import { SignupPageComponent } from './signup/signup-page/signup-page.component';
+import { ProfilePageComponent } from './profile-page/profile-page.component';
 
 const routes: Routes = [
   {
@@ -18,6 +19,17 @@ const routes: Routes = [
     path: '',
     component: HomepageComponent,
     canActivate: [AuthGuard],
+    children: [
+      {
+        path: '',
+        redirectTo: 'profile',
+        pathMatch: 'full'
+      },
+      {
+        path: 'profile',
+        component: ProfilePageComponent
+      }
+    ]
   }
 ];
 

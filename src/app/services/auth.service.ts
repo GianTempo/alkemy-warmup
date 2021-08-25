@@ -49,13 +49,19 @@ export class AuthService {
     this.router.navigate(['/login'])
   }
 
-  signup(user:any) {
+  signup(user:any):void {
     this.loggedUser = user;
     this.setLoggedUser(user)
     this.router.navigate([''])
   }
 
-  setLoggedUser(user: User) {
+  setLoggedUser(user: User):void {
     localStorage.setItem('user', JSON.stringify(user));
+  }
+
+  getUser(): User {
+    const loggedUser = localStorage.user;
+    const user = JSON.parse(loggedUser)
+    return user;
   }
 }
