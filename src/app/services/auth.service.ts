@@ -17,20 +17,22 @@ export class AuthService {
 
   login(user: { username: string, email: string }):Observable<boolean> {
     let users: User[] = []
-    this.usrSvc.getUsers().subscribe(res => users = res)
     let success = new Observable<boolean>(observer => {
-          users.forEach((u) => {
-            if (u.username === user.username && u.email === user.email) {
-              this.usrSvc.setLoggedUser(u)
-              observer.next(true)
-              observer.complete()
+      this.usrSvc.getUsers().subscribe(res => {
+        users = res
+        users.forEach((u) => {
+          if (u.username === user.username && u.email === user.email) {
+            this.usrSvc.setLoggedUser(u)
+            observer.next(true)
+            observer.complete()
             }
-            else {
-              observer.next(false)
-              observer.complete()
+          else {
+            observer.next(false)
+            observer.complete()
             }
-          })
-          })
+        })
+      })
+    })
     return success
   }
 

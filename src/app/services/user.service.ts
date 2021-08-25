@@ -52,6 +52,7 @@ export class UserService {
       })
         .then(res => {
           observer.next(res.data)
+          observer.complete();
         })
     })
       return users
