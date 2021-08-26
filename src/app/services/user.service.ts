@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
-import Axios from 'axios'
 import { createAvatar } from '@dicebear/avatars'
 import * as style from '@dicebear/avatars-avataaars-sprites'
-import { DomSanitizer } from '@angular/platform-browser';
 import { User } from '../models/user.model';
 import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -37,7 +36,9 @@ export class UserService {
     avatar:''
   }
   
-  constructor (private sanitizer: DomSanitizer) { }
+  constructor (
+    private http: HttpClient
+  ) { }
 
   generateAvatar() {
     let svg = createAvatar(style, { seed: Date.now().toLocaleString() })
@@ -45,17 +46,7 @@ export class UserService {
   }
 
   getUsers():Observable<User[]> {
-    let users = new Observable<User[]>(observer => {
-      Axios({
-        method: 'get',
-        url: this.URL_API,
-      })
-        .then(res => {
-          observer.next(res.data)
-          observer.complete();
-        })
-    })
-      return users
+    return this.http.get<User[]>(this.URL_API)
   }
 
   setLoggedUser(user: User): void {
@@ -70,17 +61,6 @@ export class UserService {
   }
 
   getUserById(id:string): Observable<User> {
-    let user = new Observable<User>(observer => {
-      Axios({
-        method: 'get',
-        url: `${this.URL_API}/${id}`,
-      })
-        .then(res => {
-          res.data.avatar = this.generateAvatar()
-          observer.next(res.data)
-          observer.complete()
-        })
-    })
-      return user
+    return this.http.get<User>(`${this.URL_API}/${id}`)
   }
 }

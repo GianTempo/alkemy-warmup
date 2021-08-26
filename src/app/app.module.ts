@@ -27,7 +27,8 @@ import { UsersPageModule } from './users-page/users-page.module';
     SignupModule,
     ProfilePageModule,
     UsersPageModule,
-    NgDompurifyModule
+    NgDompurifyModule,
+    HttpClientModule
   ],
   providers: [Title, {
     provide: Sanitizer,

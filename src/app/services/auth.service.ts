@@ -1,6 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import Axios from 'axios'
 import { Observable } from 'rxjs';
 import { User } from '../models/user.model';
 import { UserService } from './user.service';
@@ -12,7 +12,7 @@ export class AuthService {
 
   constructor (
     private router: Router,
-    private usrSvc: UserService,
+    private usrSvc: UserService
   ) { }
 
   login(user: { username: string, email: string }):Observable<boolean> {

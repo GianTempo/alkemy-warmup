@@ -47,22 +47,17 @@ export class ProfilePageComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.log('Accesing to profile')
     this.activeRoute.paramMap.subscribe(param => {
-      console.log('Checking param')
       if (param.has('id')) { //Checks if the route has an id param that indicates that this page is not from the logged user
-        console.log('There is param')
         let id = param.get('id') as string
         this.userSvc.getUserById(id).subscribe(user => {
           this.user = user
-          console.log(user)
+          this.user.avatar = this.userSvc.generateAvatar()
         })
         this.mode = 'foreign'
       }
       else {
-        console.log('There is not param')
         this.user = this.userSvc.getUser()
-        console.log(this.user)
         this.mode = ''
       }
     })
