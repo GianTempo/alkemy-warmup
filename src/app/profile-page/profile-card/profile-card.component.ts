@@ -1,7 +1,8 @@
-import { Input } from '@angular/core';
+import { Input, SecurityContext } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
+import { NgDompurifySanitizer } from '@tinkoff/ng-dompurify';
 import { User } from 'src/app/models/user.model';
 import { UserService } from 'src/app/services/user.service';
 
@@ -38,11 +39,10 @@ export class ProfileCardComponent implements OnInit {
 
   @Input() mode:string = ''
 
-  constructor (private sanitizer:DomSanitizer, private userSvc:UserService, private router:Router) { }
+  constructor (private readonly sanitizer:NgDompurifySanitizer, private userSvc:UserService, private router:Router) { }
 
   ngOnInit(): void {
-    let avatar = this.userSvc.generateAvatar()
-    this.user.avatar = this.sanitizer.bypassSecurityTrustHtml(avatar)
+    this.user.avatar = this.sanitizer.sanitize(SecurityContext.RESOURCE_URL, this.user.avatar)
   }
 
   goToPosts(): void {
@@ -60,10 +60,10 @@ export class ProfileCardComponent implements OnInit {
     //TODO: implement event emitter once TODOs page is made.
   }
 
-  goToProfile(): void {
+  goToProfile(id:number): void {
     if (this.mode === 'foreign') {
       console.log(`Navigating to ${this.user.name}'s profile`)
-      //Include navigate to users profile
+      this.router.navigate(['/profile', id])
     }
   }
 

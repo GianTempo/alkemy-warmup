@@ -14,7 +14,10 @@ export class UsersPageComponent implements OnInit {
   users: User[] = []
 
   ngOnInit(): void {
-    this.userSvc.getUsers().subscribe(res => this.users = res)
+    this.userSvc.getUsers().subscribe(res => {
+      this.users = res
+      this.users.forEach( user => user.avatar = this.userSvc.generateAvatar())
+    })
   }
 
 }

@@ -22,5 +22,5 @@ export interface User {
         catchPhrase: string,
         bs: string,
     },
-    avatar:SafeHtml
+    avatar:string
 }

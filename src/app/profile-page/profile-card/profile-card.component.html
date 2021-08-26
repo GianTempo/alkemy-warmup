@@ -1,4 +1,4 @@
-    <mat-card class="mx-3 mt-3 h-auto w-auto" [ngClass]="{'hover:bg-gray-100': mode==='foreign'}" (click)="goToProfile()">
+    <mat-card class="mx-3 mt-3 h-auto w-auto" [ngClass]="{'hover:bg-gray-100': mode==='foreign'}" (click)="goToProfile(user.id)">
         <div class="pb-3 flex flex-row">
             <div class="bg-gray-300 w-1/6 h-1/2 my-auto sm:h-2/3 lg:h-1/3 mr-3 rounded-full p-4 sm:p-7">
                 <div [innerHTML]="user.avatar"></div>

@@ -1,11 +1,11 @@
 //Angular imports
-import { NgModule } from '@angular/core';
+import { NgModule, Sanitizer } from '@angular/core';
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { InlineSVGModule } from 'ng-inline-svg'
 import { HttpClientModule } from '@angular/common/http';
+import { NgDompurifyModule, NgDompurifySanitizer } from '@tinkoff/ng-dompurify'
 
 //Other modules imports
 import { MaterialModule } from './material.module';
@@ -26,9 +26,13 @@ import { UsersPageModule } from './users-page/users-page.module';
     LoginModule,
     SignupModule,
     ProfilePageModule,
-    UsersPageModule
+    UsersPageModule,
+    NgDompurifyModule
   ],
-  providers: [Title],
+  providers: [Title, {
+    provide: Sanitizer,
+    useClass: NgDompurifySanitizer
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

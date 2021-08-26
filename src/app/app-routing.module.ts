@@ -27,10 +27,14 @@ const routes: Routes = [
         pathMatch: 'full'
       },
       {
+        path: 'profile/:id',
+        component: ProfilePageComponent,
+      },
+      {
         path: 'profile',
         component: ProfilePageComponent,
-        /* children: [
-          {
+        children: [
+          /* {
             path: ':id/posts',
             //Implement posts page
           },
@@ -41,8 +45,8 @@ const routes: Routes = [
           {
             path: ':id/albums',
             //implement album page
-          }
-        ] */
+          } */
+        ]
       },
       {
         path: 'users',

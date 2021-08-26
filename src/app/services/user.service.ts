@@ -76,6 +76,7 @@ export class UserService {
         url: `${this.URL_API}/${id}`,
       })
         .then(res => {
+          res.data.avatar = this.generateAvatar()
           observer.next(res.data)
           observer.complete()
         })
