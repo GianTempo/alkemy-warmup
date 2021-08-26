@@ -1,15 +1,17 @@
 <mat-card class="h-full">
-    <mat-card-header class="h-2/5">
-        <mat-card-title>User {{todo.userId}}: {{todo.title}}</mat-card-title>
-    </mat-card-header>
+    <div class="h-2/3 flex items-center">
+        <mat-card-header>
+            <mat-card-title>User {{todo.userId}}: {{todo.title}}</mat-card-title>
+        </mat-card-header>
+    </div>
     <mat-divider></mat-divider>
-    <mat-card-content class="h-1/2 pt-3">
-        <form (ngSubmit)="onSubmit()">
+    <div class="h-1/3">
+        <mat-card-content class="pt-3">
             <p>Completed: <span [ngClass]="{'text-green-500': todo.completed === true, 'text-red-500': todo.completed === false}">{{todo.completed}}</span></p>
-            <input type="checkbox" name="completed" [checked]="todo.completed" onchange="changeStatus()">
-            <mat-card-footer>
-                <button mat-button>Update</button>
-            </mat-card-footer>
-        </form>
-    </mat-card-content>
+            <form (ngSubmit)="onSubmit()" *ngIf="mode === 'edit'">
+                <input type="checkbox" name="completed" [checked]="todo.completed" (onchange)="changeStatus()" class="mr-3">
+                <button class="ml-3"mat-button>Update</button>
+            </form>
+        </mat-card-content>
+    </div>
 </mat-card>

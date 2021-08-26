@@ -15,7 +15,8 @@ export class UsersPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.userSvc.getUsers().subscribe(res => {
-      this.users = res
+      let user = this.userSvc.getUser()
+      this.users = res.filter( usr => usr.id !== user.id)
       this.users.forEach(user => this.userSvc.generateAvatar().subscribe( res => {
         user.avatar = res
       }))

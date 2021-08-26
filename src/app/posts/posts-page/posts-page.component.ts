@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Post } from 'src/app/models/post.model';
 import { Comment } from 'src/app/models/comment.model';
 import { PostService } from 'src/app/services/post.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-posts-page',
@@ -21,7 +22,7 @@ export class PostsPageComponent implements OnInit {
     title: ''
   }
 
-  constructor(private postSvc:PostService, private router:Router, private route: ActivatedRoute) { }
+  constructor(private postSvc:PostService, private router:Router, private route: ActivatedRoute, private userSvc:UserService) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(param => {
@@ -33,10 +34,14 @@ export class PostsPageComponent implements OnInit {
         this.postSvc.getPostById(id).subscribe(res => this.post = res)
       }
       else {
-        this.postSvc.getPosts().subscribe(res => this.posts = res)
+        this.postSvc.getPosts().subscribe(res => {
+          let user = this.userSvc.getUser()
+          this.posts = res.filter(post => Number(post.userId) !== user.id)
+        }
+        )
       }
     })
-    }
+  }
 
   navigateToUser(e:string): void {
     this.router.navigate(['/profile', e])

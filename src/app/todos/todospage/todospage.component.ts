@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Todo } from 'src/app/models/todo.model';
 import { TodosService } from 'src/app/services/todos.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-todospage',
@@ -10,11 +11,17 @@ import { TodosService } from 'src/app/services/todos.service';
 export class TodospageComponent implements OnInit {
 
   todos: Todo[] = []
+  mode: string = ''
 
-  constructor(private todoSvc:TodosService) { }
+  constructor(private todoSvc:TodosService, private userSvc:UserService) { }
 
   ngOnInit(): void {
-    this.todoSvc.getTodos().subscribe(res => this.todos = res)
+    this.todoSvc.getTodos().subscribe(res => {
+      let user = this.userSvc.getUser()
+      this.todos = res.filter(todo =>
+        Number(todo.userId) !== user.id
+      )
+    })
   }
 
 }

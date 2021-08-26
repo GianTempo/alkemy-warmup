@@ -15,6 +15,7 @@ export class TodocardComponent implements OnInit {
     title: '',
     completed: false
   }
+  @Input() mode:string = ''
 
   @Output() submit:EventEmitter<Todo> = new EventEmitter();
 
