@@ -7,6 +7,7 @@ import { SignupPageComponent } from './signup/signup-page/signup-page.component'
 import { ProfilePageComponent } from './profile-page/profile-page.component';
 import { UsersPageComponent } from './users-page/users-page.component';
 import { PostsPageComponent } from './posts/posts-page/posts-page.component';
+import { TodospageComponent } from './todos/todospage/todospage.component';
 
 const routes: Routes = [
   {
@@ -46,6 +47,10 @@ const routes: Routes = [
       {
         path: 'post/:id',
         component: PostsPageComponent
+      },
+      {
+        path: 'todos',
+        component: TodospageComponent
       }
     ]
   },

@@ -15,6 +15,7 @@ import { ProfilePageModule } from './profile-page/profile-page.module';
 import { UsersPageModule } from './users-page/users-page.module';
 import { PostsModule } from './posts/posts.module'
 import { LayoutModule } from '@angular/cdk/layout';
+import { TodosModule } from './todos/todos.module';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { LayoutModule } from '@angular/cdk/layout';
     NgDompurifyModule,
     HttpClientModule,
     PostsModule,
-    LayoutModule
+    LayoutModule,
+    TodosModule
   ],
   providers: [Title, {
     provide: Sanitizer,
