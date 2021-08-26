@@ -10,13 +10,15 @@ import { UserService } from '../services/user.service';
 export class UsersPageComponent implements OnInit {
 
   constructor (private userSvc: UserService) { }
-  
+
   users: User[] = []
 
   ngOnInit(): void {
     this.userSvc.getUsers().subscribe(res => {
       this.users = res
-      this.users.forEach( user => user.avatar = this.userSvc.generateAvatar())
+      this.users.forEach(user => this.userSvc.generateAvatar().subscribe( res => {
+        user.avatar = res
+      }))
     })
   }
 

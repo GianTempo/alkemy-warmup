@@ -1,6 +1,4 @@
 import { Injectable } from '@angular/core';
-import { createAvatar } from '@dicebear/avatars'
-import * as style from '@dicebear/avatars-avataaars-sprites'
 import { User } from '../models/user.model';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
@@ -11,6 +9,8 @@ import { HttpClient } from '@angular/common/http';
 export class UserService {
 
   URL_API = 'https://jsonplaceholder.typicode.com/users'
+  AVATARS_URL = 'https://avatars.dicebear.com/api/micah/'
+
   loggedUser: User = {
     id: 0,
     name: '',
@@ -35,14 +35,13 @@ export class UserService {
     },
     avatar:''
   }
-  
+
   constructor (
     private http: HttpClient
   ) { }
 
-  generateAvatar() {
-    let svg = createAvatar(style, { seed: Date.now().toLocaleString() })
-    return svg
+  generateAvatar():Observable<any> {
+    return this.http.get(`${this.AVATARS_URL}${Date.now().toString()}.svg`, {responseType: 'text'} )
   }
 
   getUsers():Observable<User[]> {
@@ -50,8 +49,10 @@ export class UserService {
   }
 
   setLoggedUser(user: User): void {
-    user.avatar = this.generateAvatar()
-    localStorage.setItem('user', JSON.stringify(user));
+    this.generateAvatar().subscribe(res => {
+      user.avatar = res
+      localStorage.setItem('user', JSON.stringify(user));
+    })
   }
 
   getUser(): User {

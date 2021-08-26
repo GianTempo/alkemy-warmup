@@ -52,7 +52,7 @@ export class ProfilePageComponent implements OnInit {
         let id = param.get('id') as string
         this.userSvc.getUserById(id).subscribe(user => {
           this.user = user
-          this.user.avatar = this.userSvc.generateAvatar()
+          this.userSvc.generateAvatar().subscribe( res => this.user.avatar = res )
         })
         this.mode = 'foreign'
       }
