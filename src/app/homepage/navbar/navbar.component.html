@@ -1,12 +1,38 @@
-<nav>
-    <mat-toolbar color="primary" class="justify-between">
-        <div>Alkemy Blog</div>
-        <div>
-            <a class="mx-3" (click)="setTitle('Profile')" [routerLink]="'profile'">Profile</a>
-            <a class="mx-3" (click)="setTitle('Users')" [routerLink]="'users'">Users</a>
-            <a class="mx-3" (click)="setTitle('Posts')" [routerLink]="'posts'">Posts</a>
-            <a class="mx-3" (click)="setTitle('Albums')" [routerLink]="'albums'">Albums</a>
-            <a class="mx-3" (click)="setTitle('TODOs')" [routerLink]="'todos'">TODOs</a>
-        </div>
-    </mat-toolbar>
-</nav>
+<mat-sidenav-container class="h-full">
+    <mat-sidenav
+    #drawer
+    class="w-52 shadow-lg"
+    fixedInViewport="false"
+    [mode]="'over'"
+    >
+    <mat-toolbar color="primary">Menu</mat-toolbar>
+    <mat-nav-list>
+        <a mat-list-item class="mx-3" (click)="setTitle('Profile')" [routerLink]="'profile'">Profile</a>
+        <a mat-list-item class="mx-3" (click)="setTitle('Users')" [routerLink]="'users'">Users</a>
+        <a mat-list-item class="mx-3" (click)="setTitle('Posts')" [routerLink]="'posts'">Posts</a>
+        <a mat-list-item class="mx-3" (click)="setTitle('Albums')" [routerLink]="'albums'">Albums</a>
+        <a mat-list-item class="mx-3" (click)="setTitle('TODOs')" [routerLink]="'todos'">TODOs</a>
+    </mat-nav-list>
+</mat-sidenav>
+    <mat-sidenav-content>
+        <mat-toolbar color="primary">
+            <button
+            class="sm:hidden"
+            type="button"
+            
+            aria-label="Toggle sidenav"
+            (click)="drawer.toggle()"
+            ><mat-icon>menu</mat-icon></button>
+            <div>Alkemy Blog</div>
+            <span class="flex-1"></span>
+            <div class="hidden sm:block sm:float-right">
+                <a class="mx-3" (click)="setTitle('Profile')" [routerLink]="'profile'">Profile</a>
+                <a class="mx-3" (click)="setTitle('Users')" [routerLink]="'users'">Users</a>
+                <a class="mx-3" (click)="setTitle('Posts')" [routerLink]="'posts'">Posts</a>
+                <a class="mx-3" (click)="setTitle('Albums')" [routerLink]="'albums'">Albums</a>
+                <a class="mx-3" (click)="setTitle('TODOs')" [routerLink]="'todos'">TODOs</a>
+            </div>
+        </mat-toolbar>
+        <ng-content></ng-content>
+    </mat-sidenav-content>
+</mat-sidenav-container>

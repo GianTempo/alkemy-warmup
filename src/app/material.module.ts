@@ -6,6 +6,9 @@ import { MatToolbarModule } from '@angular/material/toolbar'
 import { MatDividerModule } from '@angular/material/divider'
 import { MatGridListModule } from '@angular/material/grid-list'
 import { MatExpansionModule } from '@angular/material/expansion'
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatIconModule } from '@angular/material/icon';
+import { MatList, MatListModule } from '@angular/material/list'
 
 @NgModule({
     imports: [
@@ -19,6 +22,9 @@ import { MatExpansionModule } from '@angular/material/expansion'
         MatDividerModule,
         MatGridListModule,
         MatExpansionModule,
+        MatSidenavModule,
+        MatIconModule,
+        MatListModule
     ],
     declarations: [],
     providers: [],

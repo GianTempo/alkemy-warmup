@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
+import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout'
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-navbar',
@@ -8,7 +10,9 @@ import { Title } from '@angular/platform-browser';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(private titleSvc:Title) { }
+  constructor (private titleSvc: Title, private breakpointObserver: BreakpointObserver) { }
+  
+  isHandset: Observable<BreakpointState> = this.breakpointObserver.observe(Breakpoints.Handset)
 
   ngOnInit(): void {
   }

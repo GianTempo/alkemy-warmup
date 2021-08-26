@@ -14,6 +14,7 @@ import { SignupModule } from './signup/signup.module';
 import { ProfilePageModule } from './profile-page/profile-page.module';
 import { UsersPageModule } from './users-page/users-page.module';
 import { PostsModule } from './posts/posts.module'
+import { LayoutModule } from '@angular/cdk/layout';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { PostsModule } from './posts/posts.module'
     UsersPageModule,
     NgDompurifyModule,
     HttpClientModule,
-    PostsModule
+    PostsModule,
+    LayoutModule
   ],
   providers: [Title, {
     provide: Sanitizer,
