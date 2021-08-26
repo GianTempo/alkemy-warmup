@@ -1,8 +1,7 @@
-import { ɵSafeUrl } from '@angular/core';
 import { Input } from '@angular/core';
-import { ɵSafeResourceUrl } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
-import { DomSanitizer, SafeResourceUrl, SafeStyle, SafeUrl } from '@angular/platform-browser';
+import { DomSanitizer } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 import { User } from 'src/app/models/user.model';
 import { UserService } from 'src/app/services/user.service';
 
@@ -37,7 +36,9 @@ export class ProfileCardComponent implements OnInit {
     avatar:''
   }
 
-  constructor (private sanitizer:DomSanitizer, private userSvc:UserService) { }
+  @Input() mode:string = ''
+
+  constructor (private sanitizer:DomSanitizer, private userSvc:UserService, private router:Router) { }
 
   ngOnInit(): void {
     let avatar = this.userSvc.generateAvatar()
@@ -57,6 +58,13 @@ export class ProfileCardComponent implements OnInit {
   goToTODOs(): void {
     console.log('Navigating to TODOs')
     //TODO: implement event emitter once TODOs page is made.
+  }
+
+  goToProfile(): void {
+    if (this.mode === 'foreign') {
+      console.log(`Navigating to ${this.user.name}'s profile`)
+      //Include navigate to users profile
+    }
   }
 
 }
