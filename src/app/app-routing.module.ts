@@ -42,6 +42,10 @@ const routes: Routes = [
       {
         path: 'posts',
         component: PostsPageComponent
+      },
+      {
+        path: 'post/:id',
+        component: PostsPageComponent
       }
     ]
   },

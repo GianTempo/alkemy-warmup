@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Post } from 'src/app/models/post.model';
+import { Comment } from 'src/app/models/comment.model';
 import { PostService } from 'src/app/services/post.service';
 
 @Component({
@@ -11,21 +12,38 @@ import { PostService } from 'src/app/services/post.service';
 export class PostsPageComponent implements OnInit {
 
   posts: Post[] = [];
+  mode: string = '';
+  comments: Comment[] = []
+  post: Post = {
+    userId: '',
+    id: '',
+    body: '',
+    title: ''
+  }
 
-  constructor(private postSvc:PostService, private router:Router) { }
+  constructor(private postSvc:PostService, private router:Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.postSvc.getPosts().subscribe(res => {
-      this.posts = res
+    this.route.paramMap.subscribe(param => {
+      if (param.has('id')) {
+        console.log('Route has id')
+        this.mode = 'comments'
+        let id = param.get('id') as string
+        this.postSvc.getComments(id).subscribe(res => this.comments = res)
+        this.postSvc.getPostById(id).subscribe(res => this.post = res)
+      }
+      else {
+        this.postSvc.getPosts().subscribe(res => this.posts = res)
+      }
     })
-  }
+    }
 
   navigateToUser(e:string): void {
     this.router.navigate(['/profile', e])
   }
 
   navigateToComments(e: string) {
-    console.log(e)
+    this.router.navigate(['/post', e])
   }
 
 }
