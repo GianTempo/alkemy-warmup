@@ -1,1 +1,7 @@
-<app-post-card></app-post-card>
+<div *ngFor="let post of posts" class="flex flex-row justify-center">
+    <app-post-card
+     [post]="post"
+     (navigateToComments)="navigateToComments($event)"
+     (navigateToUser)="navigateToUser($event)"
+    ></app-post-card>
+</div>
