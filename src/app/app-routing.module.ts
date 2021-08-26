@@ -5,6 +5,7 @@ import { HomepageComponent } from './homepage/homepage/homepage.component';
 import { LoginPageComponent } from './login/login-page/login-page.component';
 import { SignupPageComponent } from './signup/signup-page/signup-page.component';
 import { ProfilePageComponent } from './profile-page/profile-page.component';
+import { UsersPageComponent } from './users-page/users-page.component';
 
 const routes: Routes = [
   {
@@ -43,8 +44,12 @@ const routes: Routes = [
           }
         ] */
       },
+      {
+        path: 'users',
+        component: UsersPageComponent
+      }
     ]
-  }
+  },
 ];
 
 @NgModule({

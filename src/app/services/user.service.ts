@@ -36,6 +36,7 @@ export class UserService {
     },
     avatar:''
   }
+  
   constructor (private sanitizer: DomSanitizer) { }
 
   generateAvatar() {

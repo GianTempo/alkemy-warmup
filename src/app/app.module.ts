@@ -10,11 +10,13 @@ import { HttpClientModule } from '@angular/common/http';
 //Other modules imports
 import { MaterialModule } from './material.module';
 import { LoginModule } from './login/login.module';
-import { SignupModule } from './signup/signup.module'
+import { SignupModule } from './signup/signup.module';
+import { ProfilePageModule } from './profile-page/profile-page.module';
+import { UsersPageModule } from './users-page/users-page.module';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
@@ -23,8 +25,8 @@ import { SignupModule } from './signup/signup.module'
     MaterialModule,
     LoginModule,
     SignupModule,
-    InlineSVGModule.forRoot(),
-    HttpClientModule
+    ProfilePageModule,
+    UsersPageModule
   ],
   providers: [Title],
   bootstrap: [AppComponent]
