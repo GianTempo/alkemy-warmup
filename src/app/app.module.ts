@@ -13,6 +13,7 @@ import { LoginModule } from './login/login.module';
 import { SignupModule } from './signup/signup.module';
 import { ProfilePageModule } from './profile-page/profile-page.module';
 import { UsersPageModule } from './users-page/users-page.module';
+import { PostsModule } from './posts/posts.module'
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { UsersPageModule } from './users-page/users-page.module';
     ProfilePageModule,
     UsersPageModule,
     NgDompurifyModule,
-    HttpClientModule
+    HttpClientModule,
+    PostsModule
   ],
   providers: [Title, {
     provide: Sanitizer,

@@ -6,6 +6,7 @@ import { LoginPageComponent } from './login/login-page/login-page.component';
 import { SignupPageComponent } from './signup/signup-page/signup-page.component';
 import { ProfilePageComponent } from './profile-page/profile-page.component';
 import { UsersPageComponent } from './users-page/users-page.component';
+import { PostsPageComponent } from './posts/posts-page/posts-page.component';
 
 const routes: Routes = [
   {
@@ -27,30 +28,20 @@ const routes: Routes = [
         pathMatch: 'full'
       },
       {
+        path: 'profile',
+        component: ProfilePageComponent,
+      },
+      {
         path: 'profile/:id',
         component: ProfilePageComponent,
       },
       {
-        path: 'profile',
-        component: ProfilePageComponent,
-        children: [
-          /* {
-            path: ':id/posts',
-            //Implement posts page
-          },
-          {
-            path: ':id/todos',
-            //Implement todos page
-          },
-          {
-            path: ':id/albums',
-            //implement album page
-          } */
-        ]
-      },
-      {
         path: 'users',
         component: UsersPageComponent
+      },
+      {
+        path: 'posts',
+        component: PostsPageComponent
       }
     ]
   },
