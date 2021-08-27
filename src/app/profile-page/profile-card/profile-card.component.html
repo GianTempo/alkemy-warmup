@@ -19,9 +19,4 @@
                 <p *ngIf="user.company.catchPhrase !== ''" class="pt-3 text-xl">Catch phrase: {{user.company.catchPhrase}}</p>
                 <p *ngIf="user.company.bs !== ''" class="pt-3 text-xl">Bs: {{user.company.bs}}</p>
         </mat-card-content>
-        <mat-card-actions>
-            <button mat-button color="primary" (click)="goToPosts()">Go to posts</button>
-            <button mat-button color="primary" (click)="goToAlbums()">Go to albums</button>
-            <button mat-button color="primary" (click)="goToTODOs()">Go to TODOs</button>
-        </mat-card-actions>
     </mat-card>

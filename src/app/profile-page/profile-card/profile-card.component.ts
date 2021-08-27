@@ -1,10 +1,7 @@
-import { Input, SecurityContext } from '@angular/core';
+import { Input} from '@angular/core';
 import { Component, OnInit } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
-import { NgDompurifySanitizer } from '@tinkoff/ng-dompurify';
 import { User } from 'src/app/models/user.model';
-import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-profile-card',
@@ -39,10 +36,10 @@ export class ProfileCardComponent implements OnInit {
 
   @Input() mode:string = ''
 
-  constructor (private readonly sanitizer:NgDompurifySanitizer, private userSvc:UserService, private router:Router) { }
+  constructor (
+    private router: Router) { }
 
   ngOnInit(): void {
-    this.user.avatar = this.sanitizer.sanitize(SecurityContext.RESOURCE_URL, this.user.avatar)
   }
 
   goToPosts(): void {
@@ -62,7 +59,6 @@ export class ProfileCardComponent implements OnInit {
 
   goToProfile(id:number): void {
     if (this.mode === 'foreign') {
-      console.log(`Navigating to ${this.user.name}'s profile`)
       this.router.navigate(['/profile', id])
     }
   }
