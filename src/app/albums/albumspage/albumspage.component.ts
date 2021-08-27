@@ -1,3 +1,4 @@
+import { Input } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Album } from 'src/app/models/album.model';
@@ -18,7 +19,9 @@ export class AlbumspageComponent implements OnInit {
     title: '',
     photos: []
   }
-  mode:string = ''
+  mode: string = ''
+
+  @Input() userId: number | null = null
 
   constructor (
     private albumSvc: AlbumsService,
@@ -28,23 +31,31 @@ export class AlbumspageComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe(param => {
-      if (param.has('id')) {
-        this.mode = 'show'
-        let id = param.get('id') as string
-        this.albumSvc.getAlbumById(id).subscribe(res => {
-          this.album = res
-        })
+    if (this.userId === null) {
+      console.log('Not user')
+      this.route.paramMap.subscribe(param => {
+        if (param.has('id')) {
+          this.mode = 'show'
+          let id = param.get('id') as string
+          this.albumSvc.getAlbumById(id).subscribe(res => {
+            this.album = res
+          })
+        }
+        else {
+          this.albumSvc.getAlbums().subscribe(res => {
+            let user = this.userSvc.getUser()
+            this.albums = res.filter(res => Number(res.userId) !== user.id)
+            console.log(this.albums)
+          })
+        }
       }
-      else {
-        this.albumSvc.getAlbums().subscribe(res => {
-          let user = this.userSvc.getUser()
-          this.albums = res.filter(res => Number(res.userId) !== user.id)
-          console.log(this.albums)
-        })
-      }
+      )
     }
-    )
+    else {
+      this.albumSvc.getAlbums().subscribe(res => {
+        this.albums = res.filter(res => Number(res.userId) === this.userId)
+      })
+    }
   }
 
   navigateUser(e:any) {

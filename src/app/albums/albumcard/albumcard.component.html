@@ -6,7 +6,7 @@
     </div>
     <mat-divider></mat-divider>
     <mat-card-content>
-        <div class="grid grid-cols-2 gap-2 justify-items-center pt-2">
+        <div class="grid grid-cols-2 gap-2 justify-items-center py-2">
             <div>
                 <img [src]="album.photos[0].thumbnailUrl" [alt]="album.photos[0].title">
             </div>
@@ -20,9 +20,12 @@
                 <img [src]="album.photos[3].thumbnailUrl" [alt]="album.photos[3].title">
             </div>
         </div>
-        <mat-card-actions class="flex content-between">
-            <button mat-button (click)="goToUser(album.userId)">Go to user</button>
-            <button mat-button (click)="goToAlbum(album.id)">Show album</button>
-        </mat-card-actions>
-    </mat-card-content>
+        <mat-divider></mat-divider>
+        <div>
+            <mat-card-actions class="flex content-between">
+                <button mat-button (click)="goToUser(album.userId)">Go to user</button>
+                <button mat-button (click)="goToAlbum(album.id)">Show album</button>
+            </mat-card-actions>
+        </div>
+        </mat-card-content>
 </mat-card>

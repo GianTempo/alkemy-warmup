@@ -36,6 +36,20 @@ const routes: Routes = [
       {
         path: 'profile/:id',
         component: ProfilePageComponent,
+        children: [
+          {
+            path: 'posts',
+            component: PostsPageComponent,
+          },
+          {
+            path: 'albums',
+            component: AlbumspageComponent,
+          },
+          {
+            path: 'todos',
+            component: TodospageComponent,
+          },
+        ]
       },
       {
         path: 'users',

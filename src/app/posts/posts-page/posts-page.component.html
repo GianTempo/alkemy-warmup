@@ -11,6 +11,16 @@
         ></app-post-card>
     </div>
 </div>
+<div *ngIf="mode === 'foreign'" class="flex flex-col justify-center px-4 md:px-48">
+    <div *ngFor="let post of posts">
+        <app-post-card
+        [post]="post"
+        [mode]="'user'"
+        (navigateToComments)="navigateToComments($event)"
+        (navigateToUser)="navigateToUser($event)"
+        ></app-post-card>
+    </div>
+</div>
 <div *ngIf="mode === 'comments'" class="flex flex-col justify-center px-4 md:px-48">
         <app-post-card
         [post]="post"

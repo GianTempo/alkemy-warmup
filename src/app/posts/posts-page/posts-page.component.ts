@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Post } from 'src/app/models/post.model';
 import { Comment } from 'src/app/models/comment.model';
@@ -14,7 +14,6 @@ export class PostsPageComponent implements OnInit {
 
   posts: Post[] = [];
   originalPosts: Post[] = [];
-  mode: string = '';
   comments: Comment[] = []
   post: Post = {
     userId: '',
@@ -22,6 +21,9 @@ export class PostsPageComponent implements OnInit {
     body: '',
     title: ''
   }
+  
+  @Input() userId: number | null = null
+  @Input()mode: string = ''
 
   constructor (
     private postSvc: PostService,
@@ -30,24 +32,31 @@ export class PostsPageComponent implements OnInit {
     private userSvc: UserService) { }
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe(param => {
-      if (param.has('id')) {
-        this.mode = 'comments'
-        let id = param.get('id') as string
-        this.postSvc.getComments(id).subscribe(res => this.comments = res)
-        this.postSvc.getPostById(id).subscribe(res => this.post = res)
-      }
-      else {
-        this.postSvc.getPosts().subscribe(res => {
-          let user = this.userSvc.getUser()
-          this.posts = res.filter(post => Number(post.userId) !== user.id)
-          this.originalPosts = res.filter(post => Number(post.userId) !== user.id)
+    if (this.userId === null) {
+      this.route.paramMap.subscribe(param => {
+        if (param.has('id')) {
+          this.mode = 'comments'
+          let id = param.get('id') as string
+          this.postSvc.getComments(id).subscribe(res => this.comments = res)
+          this.postSvc.getPostById(id).subscribe(res => this.post = res)
         }
-        )
-      }
-    })
+        else {
+          this.postSvc.getPosts().subscribe(res => {
+            let user = this.userSvc.getUser()
+            this.posts = res.filter(post => Number(post.userId) !== user.id)
+            this.originalPosts = res.filter(post => Number(post.userId) !== user.id)
+          }
+          )
+        }
+      })
+    }
+    else {
+      this.postSvc.getPosts().subscribe(res => {
+        this.posts = res.filter(post => Number(post.userId) === this.userId)
+        this.originalPosts = res
+      })
+    }
   }
-
   navigateToUser(e:string): void {
     this.router.navigate(['/profile', e])
   }

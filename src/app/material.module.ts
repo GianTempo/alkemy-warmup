@@ -10,6 +10,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list'
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import {MatTabsModule} from '@angular/material/tabs';
+
 
 @NgModule({
     imports: [
@@ -26,7 +28,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
         MatSidenavModule,
         MatIconModule,
         MatListModule,
-        MatCheckboxModule
+        MatCheckboxModule,
+        MatTabsModule
     ],
     declarations: [],
     providers: [],

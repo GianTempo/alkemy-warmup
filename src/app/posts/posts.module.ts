@@ -17,5 +17,9 @@ import { TodosModule } from '../todos/todos.module';
     MaterialModule,
     TodosModule
   ],
+  exports: [
+    PostsPageComponent,
+    PostCardComponent,
+  ]
 })
 export class PostsModule { }

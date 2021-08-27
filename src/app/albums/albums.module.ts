@@ -16,6 +16,9 @@ import { PhotosComponent } from './photos/photos.component';
   imports: [
     CommonModule,
     MaterialModule
+  ],
+  exports: [
+    AlbumspageComponent,
   ]
 })
 export class AlbumsModule { }

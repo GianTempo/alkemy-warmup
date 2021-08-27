@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
+import { Album } from '../models/album.model';
+import { Post } from '../models/post.model';
+import { Todo } from '../models/todo.model';
 import { User } from '../models/user.model';
-import { AuthService } from '../services/auth.service';
 import { UserService } from '../services/user.service';
-import { ProfilePageModule } from './profile-page.module'
 
 @Component({
   selector: 'app-profile-page',
@@ -37,12 +38,14 @@ export class ProfilePageComponent implements OnInit {
     avatar:''
   }
 
+  usersPosts: Post[] = [];
+  usersTodos: Todo[] = [];
+  usersAlbums: Album[] = [];
+
   mode:string = ''
 
   constructor (
-    private authSvc: AuthService,
     private userSvc: UserService,
-    private router: Router,
     private activeRoute: ActivatedRoute,
   ) { }
 

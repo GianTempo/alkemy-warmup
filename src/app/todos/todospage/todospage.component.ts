@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Todo } from 'src/app/models/todo.model';
 import { TodosService } from 'src/app/services/todos.service';
 import { UserService } from 'src/app/services/user.service';
@@ -14,18 +14,29 @@ export class TodospageComponent implements OnInit {
   originalTodos: Todo[] = []
   mode: string = ''
 
+  @Input() userId: number | null = null
+
   constructor (private todoSvc: TodosService, private userSvc: UserService) { }
 
   ngOnInit(): void {
-    this.todoSvc.getTodos().subscribe(res => {
-      let user = this.userSvc.getUser()
-      this.todos = res.filter(todo =>
-        Number(todo.userId) !== user.id
-      )
-      this.originalTodos = res.filter(todo =>
-        Number(todo.userId) !== user.id
-      )
-    })
+    if (this.userId === null) {
+      this.todoSvc.getTodos().subscribe(res => {
+        let user = this.userSvc.getUser()
+        this.todos = res.filter(todo =>
+          Number(todo.userId) !== user.id
+        )
+        this.originalTodos = res.filter(todo =>
+          Number(todo.userId) !== user.id
+        )
+      })
+    }
+    else {
+      this.todoSvc.getTodos().subscribe(res => {
+        this.todos = res.filter(todo =>
+          Number(todo.userId) === this.userId
+        )
+      })
+    }
   }
 
   filter(e: { type: string, id: number | null }) {

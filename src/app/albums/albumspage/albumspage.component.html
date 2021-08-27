@@ -1,5 +1,5 @@
 <div *ngIf="mode === '' else show"
-class="mt-2 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 mx-2">
+class="mt-2 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 mx-2 overflow-hidden">
     <div *ngFor="let album of albums">
         <app-albumcard
         [album]="album"
