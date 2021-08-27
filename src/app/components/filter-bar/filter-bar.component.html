@@ -1,13 +1,16 @@
     <div *ngIf="mode === 'todo' else posts"
-    class="mx-3 mt-2 px-5 py-5 2-full border bg-gray-300 text-center">
-        <input
-        class="text-center"
-        type="number"
-        name="filter"
-        placeholder="Search by user id"
-        [(ngModel)]="todoFilter.id"
-        (input)="emitTodo()"
-        >
+    class="mx-3 mt-2 px-5 py-5 border bg-gray-300 text-center">
+        <div class="input-wrapper focus-within:border-primary mb-4 inline-block">
+            <input
+            class="input"
+            type="number"
+            name="filter"
+            placeholder="Search by user id"
+            [(ngModel)]="todoFilter.id"
+            (input)="emitTodo()"
+            >
+        </div>
+        <div class="w-8 inline-block"></div>
         <div class="inline-block ml-12">
             <mat-checkbox
             class="mr-3"
@@ -21,22 +24,27 @@
         </div>
     </div>
     <ng-template #posts>
-        <div class="mt-2 px-5 py-5 2-full border bg-gray-300 text-center">
-            <input
-            class="text-center mr-4"
-            type="text"
-            name="titleFilter"
-            placeholder="Search by post title"
-            [(ngModel)]="postFilter.title"
-            (input)="emitPost()"
-            >
-            <input
-            class="text-center"
-            type="number"
-            name="titleFilter"
-            placeholder="Search by user id"
-            [(ngModel)]="postFilter.userId"
-            (input)="emitPost()"
-            >
+        <div class="mt-2 px-5 py-5 border bg-gray-300 text-center">
+            <div class="input-wrapper focus-within:border-primary mb-4 inline-block">
+                <input
+                class="input"
+                type="text"
+                name="titleFilter"
+                placeholder="Search by post title"
+                [(ngModel)]="postFilter.title"
+                (input)="emitPost()"
+                >
+            </div>
+            <div class="w-8 inline-block"></div>
+            <div class="input-wrapper focus-within:border-primary mb-4 inline-block">
+                <input
+                class="input"
+                type="number"
+                name="titleFilter"
+                placeholder="Search by user id"
+                [(ngModel)]="postFilter.userId"
+                (input)="emitPost()"
+                >
+            </div>
         </div>
     </ng-template>
