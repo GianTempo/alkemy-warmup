@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { NgDompurifyModule, NgDompurifySanitizer } from '@tinkoff/ng-dompurify'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 //Other modules imports
 import { MaterialModule } from './material.module';
@@ -34,7 +36,10 @@ import { TodosModule } from './todos/todos.module';
     HttpClientModule,
     PostsModule,
     LayoutModule,
-    TodosModule
+    TodosModule,
+    FormsModule,
+    CommonModule,
+    ReactiveFormsModule
   ],
   providers: [Title, {
     provide: Sanitizer,

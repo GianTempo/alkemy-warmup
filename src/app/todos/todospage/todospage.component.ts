@@ -11,9 +11,10 @@ import { UserService } from 'src/app/services/user.service';
 export class TodospageComponent implements OnInit {
 
   todos: Todo[] = []
+  originalTodos: Todo[] = []
   mode: string = ''
 
-  constructor(private todoSvc:TodosService, private userSvc:UserService) { }
+  constructor (private todoSvc: TodosService, private userSvc: UserService) { }
 
   ngOnInit(): void {
     this.todoSvc.getTodos().subscribe(res => {
@@ -21,7 +22,26 @@ export class TodospageComponent implements OnInit {
       this.todos = res.filter(todo =>
         Number(todo.userId) !== user.id
       )
+      this.originalTodos = res.filter(todo =>
+        Number(todo.userId) !== user.id
+      )
     })
   }
 
+  filter(e: { type: string, id: number | null }) {
+    if (e.type === '' && e.id !== null) { //Filter only by id
+      this.todos = this.originalTodos.filter(todo => Number(todo.userId) === e.id)
+    }
+    else if (e.type !== '' && e.id === null) { //Filter only by type
+      e.type === 'completed' ? this.todos = this.originalTodos.filter(todo => todo.completed === true) :
+        this.todos = this.originalTodos.filter(todo => todo.completed === false)
+    }
+    else if (e.type !== '' && e.id !== null) { //Filter by type and id
+      e.type === 'completed' ? this.todos = this.originalTodos.filter(todo => todo.completed === true && Number(todo.userId) === e.id) :
+      this.todos = this.originalTodos.filter(todo => todo.completed === false && Number(todo.userId) === e.id)
+      }
+    else { //There is no filter, so return all todos
+      this.todos = this.originalTodos
+    }
+  }
 }

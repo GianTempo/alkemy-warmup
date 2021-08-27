@@ -1,4 +1,8 @@
 <div *ngIf="mode === ''" class="flex flex-col justify-center px-4 md:px-48">
+    <app-filter-bar
+    [mode]="''"
+    (onPostFilter)="filterPosts($event)"
+    ></app-filter-bar>
     <div *ngFor="let post of posts">
         <app-post-card
         [post]="post"
