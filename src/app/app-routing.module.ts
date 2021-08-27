@@ -8,6 +8,7 @@ import { ProfilePageComponent } from './profile-page/profile-page.component';
 import { UsersPageComponent } from './users-page/users-page.component';
 import { PostsPageComponent } from './posts/posts-page/posts-page.component';
 import { TodospageComponent } from './todos/todospage/todospage.component';
+import { AlbumspageComponent } from './albums/albumspage/albumspage.component';
 
 const routes: Routes = [
   {
@@ -51,6 +52,10 @@ const routes: Routes = [
       {
         path: 'todos',
         component: TodospageComponent
+      },
+      {
+        path: 'albums',
+        component: AlbumspageComponent
       }
     ]
   },
