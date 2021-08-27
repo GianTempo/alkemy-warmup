@@ -1,1 +1,28 @@
-<p>albumcard works!</p>
+<mat-card class="h-full">
+    <div class="h-1/6 flex items-center">
+        <mat-card-header>
+            <mat-card-title>Album N°{{album.id}}: {{album.title}}</mat-card-title>
+        </mat-card-header>
+    </div>
+    <mat-divider></mat-divider>
+    <mat-card-content>
+        <div class="grid grid-cols-2 gap-2 justify-items-center pt-2">
+            <div>
+                <img src={{album.photos[0].thumbnailUrl}} [alt]="album.photos[0].title">
+            </div>
+            <div>
+                <img [src]="album.photos[1].thumbnailUrl" [alt]="album.photos[1].title">
+            </div>
+            <div>
+                <img [src]="album.photos[2].thumbnailUrl" [alt]="album.photos[2].title">
+            </div>
+            <div>
+                <img [src]="album.photos[3].thumbnailUrl" [alt]="album.photos[3].title">
+            </div>
+        </div>
+        <mat-card-actions class="flex content-between">
+            <button mat-button (click)="goToUser(album.userId)">Go to user</button>
+            <button mat-button (click)="goToAlbum(album.id)">Show album</button>
+        </mat-card-actions>
+    </mat-card-content>
+</mat-card>

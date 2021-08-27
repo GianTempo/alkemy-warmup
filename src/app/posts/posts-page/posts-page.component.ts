@@ -23,12 +23,15 @@ export class PostsPageComponent implements OnInit {
     title: ''
   }
 
-  constructor(private postSvc:PostService, private router:Router, private route: ActivatedRoute, private userSvc:UserService) { }
+  constructor (
+    private postSvc: PostService,
+    private router: Router,
+    private route: ActivatedRoute,
+    private userSvc: UserService) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(param => {
       if (param.has('id')) {
-        console.log('Route has id')
         this.mode = 'comments'
         let id = param.get('id') as string
         this.postSvc.getComments(id).subscribe(res => this.comments = res)

@@ -1,1 +1,16 @@
-<p>albumspage works!</p>
+<div *ngIf="mode === '' else show"
+class="mt-2 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 mx-2">
+    <div *ngFor="let album of albums">
+        <app-albumcard
+        [album]="album"
+        (navigateUser)="navigateUser($event)"
+        (navigateAlbum)="navigateAlbum($event)"
+        ></app-albumcard>
+    </div>
+</div>
+
+<ng-template #show>
+    <app-photos
+    [album]="album"
+    ></app-photos>
+</ng-template>

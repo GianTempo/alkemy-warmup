@@ -1,0 +1,25 @@
+<div class="mx-2 mt-2 h-full">
+    <mat-card class="mb-2">
+            <mat-card-header>
+                <mat-card-title>Album N°{{album.id}}: {{album.title}}</mat-card-title>
+            </mat-card-header>
+    </mat-card>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-4 gap-2">
+        <div *ngFor="let photo of album.photos">
+            <mat-card  class="justify-items-center h-full">
+                <div class="h-14 flex items-center">
+                    <mat-card-header>
+                        <mat-card-title>Photo {{photo.id}}: {{photo.title}}</mat-card-title>
+                    </mat-card-header>
+                </div>
+                <mat-divider></mat-divider>
+                <div class="object-contain mt-2">
+                    <img
+                    src={{photo.url}}
+                    alt={{photo.title}}
+                    class="mx-auto">
+                </div>
+            </mat-card>
+        </div>
+    </div>
+</div>

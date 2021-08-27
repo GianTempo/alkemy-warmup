@@ -18,6 +18,7 @@ import { UsersPageModule } from './users-page/users-page.module';
 import { PostsModule } from './posts/posts.module'
 import { LayoutModule } from '@angular/cdk/layout';
 import { TodosModule } from './todos/todos.module';
+import { AlbumsModule } from './albums/albums.module';
 
 @NgModule({
   declarations: [
@@ -37,9 +38,7 @@ import { TodosModule } from './todos/todos.module';
     PostsModule,
     LayoutModule,
     TodosModule,
-    FormsModule,
-    CommonModule,
-    ReactiveFormsModule
+    AlbumsModule
   ],
   providers: [Title, {
     provide: Sanitizer,

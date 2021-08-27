@@ -56,6 +56,10 @@ const routes: Routes = [
       {
         path: 'albums',
         component: AlbumspageComponent
+      },
+      {
+        path: 'albums/:id',
+        component: AlbumspageComponent
       }
     ]
   },
