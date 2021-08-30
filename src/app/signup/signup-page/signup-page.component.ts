@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-signup-page',
@@ -8,7 +9,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class SignupPageComponent implements OnInit {
 
-  constructor (private fb: FormBuilder) {
+  constructor (
+    private fb: FormBuilder,
+    private authSvc:AuthService
+  ) {
   }
 
   ngOnInit(): void {
@@ -25,6 +29,7 @@ export class SignupPageComponent implements OnInit {
 
   onSaveForm(signupForm: FormGroup) {
     console.log(signupForm)
+    this.authSvc.signup(signupForm)
     this.signupForm.reset()
   }
 

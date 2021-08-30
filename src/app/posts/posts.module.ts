@@ -4,6 +4,7 @@ import { PostsPageComponent } from './posts-page/posts-page.component';
 import { PostCardComponent } from './post-card/post-card.component';
 import { MaterialModule } from '../material.module';
 import { TodosModule } from '../todos/todos.module';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -15,7 +16,8 @@ import { TodosModule } from '../todos/todos.module';
   imports: [
     CommonModule,
     MaterialModule,
-    TodosModule
+    TodosModule,
+    FormsModule
   ],
   exports: [
     PostsPageComponent,

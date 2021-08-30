@@ -32,8 +32,9 @@ export class LoginPageComponent implements OnInit {
     }
     this.authSvc.login(user).subscribe(res => {
       if (res === true) {
+        console.log('true')
         this.unsuccesfullLogin = false;
-        this.router.navigate(['/'])
+        this.router.navigate(['/profile'])
       }
       else {
         this.unsuccesfullLogin = true;

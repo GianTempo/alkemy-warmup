@@ -11,7 +11,7 @@
         ></app-post-card>
     </div>
 </div>
-<div *ngIf="mode === 'foreign'" class="flex flex-col justify-center px-4 md:px-48">
+<div *ngIf="mode === 'foreign' else crud" class="flex flex-col justify-center px-4 md:px-48">
     <div *ngFor="let post of posts">
         <app-post-card
         [post]="post"
@@ -28,3 +28,72 @@
         [mode]="mode">
         ></app-post-card>
 </div>
+<ng-template #crud>
+    <mat-accordion class="w-1/4 flex flex-row mt-3">
+        <mat-expansion-panel *ngIf="!isEditing else editPanel">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Add a post
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <form #addForm = "ngForm" (ngSubmit)="addPost()">
+              <div class="input-wrapper mx-auto">
+                <input type="text"
+                placeholder="Title"
+                class="input w-full"
+                name="post title"
+                [(ngModel)]="postForm.title"
+                >
+              </div>
+              <div placeholder="Content" class="input">
+                <textarea class="border border-gray-200 rounded-lg appearance-none focus:outline-none p-3"
+                name="title body"
+                id=""
+                cols="30"
+                rows="10"
+                [(ngModel)]="postForm.body"
+                ></textarea>
+              </div>
+              <button mat-button type="submit" *ngIf="isEditing">Edit post</button>
+          </form>
+        </mat-expansion-panel>
+        <ng-template #editPanel>
+          <mat-expansion-panel [expanded]="true">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Edit a comment
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <form #addForm = "ngForm" (ngSubmit)="editPost()">
+              <div class="input-wrapper mx-auto">
+                <input type="text"
+                placeholder="Title"
+                class="input w-full"
+                name="post title"
+                [(ngModel)]="postForm.title"
+                >
+              </div>
+              <div placeholder="Content" class="input">
+                <textarea class="border border-gray-200 rounded-lg appearance-none focus:outline-none p-3"
+                name="title body"
+                id=""
+                cols="30"
+                rows="10"
+                [(ngModel)]="postForm.body"
+                ></textarea>
+              </div>
+              <button mat-button type="submit" *ngIf="isEditing">Edit post</button>
+            </form>
+          </mat-expansion-panel>
+        </ng-template>
+    </mat-accordion>
+    <div *ngFor="let post of posts">
+        <app-post-card
+        [post]="post"
+        [mode]="'crud'"
+        (navigateToComments)="navigateToComments($event)"
+        (deletePost)="deletePost($event)"
+        (selectPost)="selectPost($event)"
+        ></app-post-card>
+    </div>
+</ng-template>

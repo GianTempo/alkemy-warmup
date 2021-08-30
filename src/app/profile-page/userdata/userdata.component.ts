@@ -9,6 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class UserdataComponent implements OnInit {
 
   @Input() userId: number | null = null
+  @Input() isCrud: boolean = false
 
   constructor() { }
 

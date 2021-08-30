@@ -23,6 +23,7 @@ export class AuthService {
         users.forEach((u) => {
           if (u.username === user.username && u.email === user.email) {
             this.usrSvc.setLoggedUser(u)
+            this.router.navigate(['/'])
             observer.next(true)
             observer.complete()
             }
@@ -42,7 +43,35 @@ export class AuthService {
   }
 
   signup(user: any): void {
-    this.usrSvc.setLoggedUser(user)
+    const { name, username, mail, website, company: {
+      name: companyName,
+      catchPhrase: companyCatchPhrase
+    } } = user
+    let newUser = {
+      id: 11,
+      address: {
+        street: '',
+        suite: '',
+        city: '',
+        zipcode: '',
+        geo: {
+          lat: '',
+          lng: ''
+        }
+      },
+      phone: '',
+      avatar: '',
+      name: name,
+      username: username,
+      email: mail,
+      website: website,
+      company: {
+        name: companyName,
+        catchPhrase: companyCatchPhrase,
+        bs: ''
+      }
+    }
+    this.usrSvc.setLoggedUser(newUser)
     this.router.navigate([''])
   }
 

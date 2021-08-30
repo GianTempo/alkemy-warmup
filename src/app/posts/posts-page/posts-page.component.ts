@@ -4,6 +4,7 @@ import { Post } from 'src/app/models/post.model';
 import { Comment } from 'src/app/models/comment.model';
 import { PostService } from 'src/app/services/post.service';
 import { UserService } from 'src/app/services/user.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-posts-page',
@@ -12,18 +13,30 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class PostsPageComponent implements OnInit {
 
+  @Input() userId: number | null = null
+  @Input() mode: string = ''
+
   posts: Post[] = [];
+
   originalPosts: Post[] = [];
+
   comments: Comment[] = []
+
   post: Post = {
-    userId: '',
+    userId: 0,
     id: '',
     body: '',
     title: ''
   }
-  
-  @Input() userId: number | null = null
-  @Input()mode: string = ''
+
+  postForm: Post = {
+    userId: 0,
+    id: '',
+    body: '',
+    title: ''
+  }
+
+  isEditing: boolean = false;
 
   constructor (
     private postSvc: PostService,
@@ -51,13 +64,10 @@ export class PostsPageComponent implements OnInit {
       })
     }
     else {
-      this.postSvc.getPosts().subscribe(res => {
-        this.posts = res.filter(post => Number(post.userId) === this.userId)
-        this.originalPosts = res
-      })
+     this.posts = this.postSvc.getLoggedUserPosts()
     }
   }
-  navigateToUser(e:string): void {
+  navigateToUser(e:number): void {
     this.router.navigate(['/profile', e])
   }
 
@@ -75,10 +85,37 @@ export class PostsPageComponent implements OnInit {
     }
     else if (e.title !== '' && e.userId !== null) { //Filter by title and id
       this.posts = this.originalPosts.filter(post => post.title.includes(e.title) && Number(post.userId) === e.userId)
-      }
+    }
     else { //There is no filter, so return all posts
       this.posts = this.originalPosts
     }
   }
 
+  //Crud operations
+  addPost(): void {
+    this.postSvc.addPost(this.postForm)
+    this.posts.push(this.postForm)
+    this.postForm.body = ''
+    this.postForm.title = ''
+  }
+
+  deletePost(title:string): void {
+    this.posts = this.posts.filter(post => post.title !== title)
+    this.postSvc.removePost(title)
+    this.postForm.body = ''
+    this.postForm.title = ''
+  }
+
+  selectPost(title: String): void {
+    let post = this.posts.find(post => post.title === title)
+    if (post !== undefined) {
+      this.postForm = post
+      this.isEditing = true
+    }
+  }
+
+  editPost(): void {
+    this.postSvc.editPost(this.postForm)
+    this.isEditing = false
+  }
 }

@@ -33,12 +33,14 @@ export class PostService {
   }
 
   setLoggedUserPosts(): void {
-    let user = this.userSvc.getUser()
-    let posts: Post[]
-    this.getPosts().subscribe(res => {
-      posts = res.filter(post => Number(post.userId) === user.id)
-      localStorage.userPosts = JSON.stringify(posts)
-    })
+    if (!localStorage.userPosts) {
+      let user = this.userSvc.getUser()
+      let posts: Post[]
+      this.getPosts().subscribe(res => {
+        posts = res.filter(post => Number(post.userId) === user.id)
+        localStorage.userPosts = JSON.stringify(posts)
+      })
+    }
   }
 
   getLoggedUserPosts(): Post[] {
@@ -47,22 +49,31 @@ export class PostService {
   }
 
   addPost(newPost: Post): void {
-    let posts:Post[] = JSON.parse(localStorage.userPosts)
-    posts.push(newPost)
-    localStorage.userPosts = JSON.stringify(posts)
+    let user = this.userSvc.getUser()
+    const { id } = user
+    newPost.userId = id
+    this.http.post<Post>(this.URL_API, newPost).subscribe(res => {
+      let posts: Post[] = JSON.parse(localStorage.userPosts)
+      posts.push(res)
+      localStorage.userPosts = JSON.stringify(posts)
+    })
   }
 
-  removePost(postId: string): void {
+  removePost(postTitle: string): void {
     let posts:Post[] = JSON.parse(localStorage.userPosts)
-    let newPosts = posts.filter(post => post.id !== postId)
+    let newPosts = posts.filter(post => post.title !== postTitle)
     localStorage.userPosts = JSON.stringify(newPosts)
   }
 
   editPost(newPost: Post): void {
-    let posts:Post[] = JSON.parse(localStorage.userPosts)
-    let newPosts = posts.map(pst => {
-      pst.id === newPost.id ? pst = newPost : null
+    let posts: Post[] = JSON.parse(localStorage.userPosts)
+    console.log(newPost)
+    posts.forEach(pst => {
+      if (pst.id === newPost.id) {
+        pst = newPost
+      }
     })
-    localStorage.userPosts = JSON.stringify(newPosts)
+    console.log(posts)
+    localStorage.userPosts = JSON.stringify(posts)
   }
 }

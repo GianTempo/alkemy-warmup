@@ -1,4 +1,4 @@
-<mat-tab-group class="my-3 mx-3">
+<mat-tab-group class="my-3 mx-3" *ngIf="isCrud === false else crud">
     <mat-tab label="Posts">
         <app-posts-page
         [userId]="userId"
@@ -15,4 +15,25 @@
         [userId]="userId"
         ></app-todospage>
     </mat-tab>
-  </mat-tab-group>
+</mat-tab-group>
+
+<ng-template #crud>
+    <mat-tab-group class="my-3 mx-3">
+        <mat-tab label="Posts">
+            <app-posts-page
+            [userId]="userId"
+            [mode]="'crud'"
+            ></app-posts-page>
+        </mat-tab>
+        <mat-tab label="Albums">
+            <app-albumspage
+            [userId]="userId"
+            ></app-albumspage>
+        </mat-tab>
+        <mat-tab label="TODOs">
+            <app-todospage
+            [userId]="userId"
+            ></app-todospage>
+        </mat-tab>
+    </mat-tab-group>
+</ng-template>

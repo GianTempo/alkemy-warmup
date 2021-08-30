@@ -37,12 +37,7 @@ export class ProfilePageComponent implements OnInit {
     },
     avatar:''
   }
-
-  usersPosts: Post[] = [];
-  usersTodos: Todo[] = [];
-  usersAlbums: Album[] = [];
-
-  mode:string = ''
+  isCrud:boolean = false
 
   constructor (
     private userSvc: UserService,
@@ -57,11 +52,11 @@ export class ProfilePageComponent implements OnInit {
           this.user = user
           this.userSvc.generateAvatar().subscribe( res => this.user.avatar = res )
         })
-        this.mode = 'foreign'
+        this.isCrud = false
       }
       else {
         this.user = this.userSvc.getUser()
-        this.mode = ''
+        this.isCrud = true
       }
     })
   }
