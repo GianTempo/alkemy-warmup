@@ -4,12 +4,14 @@ import { AppRoutingModule } from '../app-routing.module'
 import { HomepageComponent } from './homepage/homepage.component';
 import { MaterialModule } from '../material.module';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { NavbarComponent } from './navbar/navbar.component'
+import { NavbarComponent } from './navbar/navbar.component';
+import { FooterComponent } from './footer/footer.component'
 
 @NgModule({
   declarations: [
     HomepageComponent,
-    NavbarComponent
+    NavbarComponent,
+    FooterComponent
   ],
   imports: [
     CommonModule,
